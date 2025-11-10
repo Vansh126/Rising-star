@@ -1,0 +1,209 @@
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+
+  /* ------------------------------
+     TYPEWRITER EFFECT
+  ------------------------------ */
+
+  .typewriter {
+    @apply relative inline-block align-middle overflow-hidden whitespace-nowrap border-r-4 border-yellow-400;
+    animation: blink 0.7s step-end infinite;
+  }
+
+  /* Blinking cursor */
+  @keyframes blink {
+    50% {
+      border-color: transparent;
+    }
+  }
+
+  /* Typing + erasing + next word sequence */
+  .typewriter::after {
+    content: "";
+    animation: typingWords 9s steps(1, end) infinite;
+  }
+
+  @keyframes typingWords {
+
+    /* --- GROW --- */
+    0% {
+      content: "G";
+    }
+
+    4% {
+      content: "Gr";
+    }
+
+    8% {
+      content: "Gro";
+    }
+
+    12% {
+      content: "Grow";
+    }
+
+    16% {
+      content: "Gro";
+    }
+
+    20% {
+      content: "Gr";
+    }
+
+    24% {
+      content: "G";
+    }
+
+    26% {
+      content: "";
+    }
+
+    /* --- NURTURE --- */
+    29% {
+      content: "N";
+    }
+
+    33% {
+      content: "Nu";
+    }
+
+    37% {
+      content: "Nur";
+    }
+
+    41% {
+      content: "Nurt";
+    }
+
+    45% {
+      content: "Nurtu";
+    }
+
+    49% {
+      content: "Nurtur";
+    }
+
+    53% {
+      content: "Nurture";
+    }
+
+    57% {
+      content: "Nurtur";
+    }
+
+    61% {
+      content: "Nurtu";
+    }
+
+    65% {
+      content: "Nurt";
+    }
+
+    69% {
+      content: "Nur";
+    }
+
+    73% {
+      content: "Nu";
+    }
+
+    76% {
+      content: "N";
+    }
+
+    78% {
+      content: "";
+    }
+
+    /* --- ASCEND --- */
+    80% {
+      content: "A";
+    }
+
+    83% {
+      content: "As";
+    }
+
+    86% {
+      content: "Asc";
+    }
+
+    89% {
+      content: "Asce";
+    }
+
+    92% {
+      content: "Ascen";
+    }
+
+    95% {
+      content: "Ascend";
+    }
+
+    97% {
+      content: "Ascen";
+    }
+
+    98% {
+      content: "Asc";
+    }
+
+    99% {
+      content: "As";
+    }
+
+    100% {
+      content: "A";
+    }
+  }
+
+  /* ------------------------------
+     DIM LIGHT EFFECT
+  ------------------------------ */
+
+  @keyframes dimlight {
+
+    0%,
+    18%,
+    20%,
+    50.1%,
+    60%,
+    65.1%,
+    80%,
+    90.1%,
+    92% {
+      color: #0e3742;
+      box-shadow: none;
+    }
+
+    18.1%,
+    20.1%,
+    30%,
+    50%,
+    60.1%,
+    65%,
+    80.1%,
+    90%,
+    92.1%,
+    100% {
+      color: #fff;
+      text-shadow: 0 0 10px #03bcf4, 0 0 20px #03bcf4;
+    }
+  }
+
+  .animate-dimlight {
+    animation: dimlight 5s infinite;
+  }
+
+  /* ------------------------------
+     BOX REFLECTION EFFECT
+  ------------------------------ */
+
+  .box-reflect {
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0004);
+  }
+}
