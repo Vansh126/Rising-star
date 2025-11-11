@@ -1,11 +1,13 @@
-import React from 'react';
-import logo from './risingstar.png';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import logo from "./risingstar.png";
+import { Link } from "react-router-dom";
+
 const Navbar = () => {
+    const [isOpen, setIsOpen] = useState(false);
+
     return (
         <nav className="bg-gradient-to-r from-indigo-700/40 via-purple-700/40 to-pink-600/40 backdrop-blur-xl shadow-2xl sticky top-0 z-50 border-b border-white/20 transition-all duration-500">
             <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-
                 {/* Logo Section */}
                 <div className="flex items-center space-x-3 cursor-pointer group">
                     <img
@@ -13,12 +15,12 @@ const Navbar = () => {
                         alt="Rising Star Logo"
                         className="w-14 h-14 rounded-full border-2 border-yellow-400/80 shadow-lg group-hover:scale-110 transition-transform duration-300"
                     />
-                    <h1 className="text-white text-3xl font-extrabold tracking-wide group-hover:text-yellow-300 transition duration-300 drop-shadow-lg">
+                    <h1 className="text-white text-2xl md:text-3xl font-extrabold tracking-wide group-hover:text-yellow-300 transition duration-300 drop-shadow-lg">
                         Rising Star <span className="text-yellow-400">Badminton</span> Academy
                     </h1>
                 </div>
 
-                {/* Navigation Links */}
+                {/* Desktop Navigation */}
                 <ul className="hidden md:flex space-x-8 text-white font-semibold tracking-wide drop-shadow-md">
                     <li className="relative group cursor-pointer">
                         <Link to="/">Home</Link>
@@ -40,30 +42,102 @@ const Navbar = () => {
                         <Link to="/images">Images</Link>
                         <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-300 group-hover:w-full transition-all duration-300"></span>
                     </li>
-
-
                 </ul>
 
-
-                {/* Join Button */}
+                {/* Join Button (Desktop only) */}
                 <button className="hidden md:block bg-gradient-to-r from-yellow-400 to-orange-400 text-black font-bold px-6 py-2 rounded-full hover:from-yellow-300 hover:to-yellow-500 hover:scale-110 hover:shadow-2xl transition-all duration-300">
                     <Link to="/joinus">Join Us</Link>
                 </button>
 
-                {/* Mobile Menu Icon */}
+                {/* Mobile Menu Button */}
                 <div className="md:hidden flex items-center">
-                    <button className="text-white focus:outline-none hover:text-yellow-300 transition">
-                        <svg
-                            className="w-8 h-8"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                                d="M4 6h16M4 12h16m-7 6h7" />
-                        </svg>
+                    <button
+                        className="text-white focus:outline-none hover:text-yellow-300 transition"
+                        onClick={() => setIsOpen(!isOpen)}
+                    >
+                        {isOpen ? (
+                            <svg
+                                className="w-8 h-8"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M6 18L18 6M6 6l12 12"
+                                />
+                            </svg>
+                        ) : (
+                            <svg
+                                className="w-8 h-8"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M4 6h16M4 12h16M4 18h16"
+                                />
+                            </svg>
+                        )}
                     </button>
+                </div>
+            </div>
+
+            {/* Mobile Dropdown Menu with Animation */}
+            <div
+                className={`md:hidden overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                    }`}
+            >
+                <div className="bg-gradient-to-r from-indigo-800 via-purple-800 to-pink-700 px-6 py-4 space-y-4 text-white font-semibold border-t border-white/20">
+                    <Link
+                        to="/"
+                        onClick={() => setIsOpen(false)}
+                        className="block hover:text-yellow-300 transition"
+                    >
+                        Home
+                    </Link>
+                    <Link
+                        to="/about"
+                        onClick={() => setIsOpen(false)}
+                        className="block hover:text-yellow-300 transition"
+                    >
+                        About
+                    </Link>
+                    <Link
+                        to="/coaches"
+                        onClick={() => setIsOpen(false)}
+                        className="block hover:text-yellow-300 transition"
+                    >
+                        Coaches
+                    </Link>
+                    <Link
+                        to="/contactus"
+                        onClick={() => setIsOpen(false)}
+                        className="block hover:text-yellow-300 transition"
+                    >
+                        Contact Us
+                    </Link>
+                    <Link
+                        to="/images"
+                        onClick={() => setIsOpen(false)}
+                        className="block hover:text-yellow-300 transition"
+                    >
+                        Images
+                    </Link>
+                    <Link
+                        to="/joinus"
+                        onClick={() => setIsOpen(false)}
+                        className="block bg-gradient-to-r from-yellow-400 to-orange-400 text-black font-bold text-center py-2 rounded-full hover:from-yellow-300 hover:to-yellow-500 transition"
+                    >
+                        Join Us
+                    </Link>
                 </div>
             </div>
         </nav>
