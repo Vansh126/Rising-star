@@ -32,13 +32,7 @@ const Joinus = () => {
                     toast.success('✅ Message sent successfully!', {
                         position: 'top-center',
                         autoClose: 3000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
                     })
-
-                    // Reset form fields
                     setFormData({
                         name: '',
                         gender: '',
@@ -48,34 +42,29 @@ const Joinus = () => {
                         address: '',
                     })
                 },
-                (error) => {
+                () => {
                     toast.error('❌ Failed to send message. Please try again.', {
                         position: 'top-center',
                         autoClose: 3000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
                     })
-                    console.error('FAILED...', error.text)
                 }
             )
     }
 
     return (
-        <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-100 to-blue-300">
+        <div className="flex justify-center items-center min-h-screen bg-[#1b1b1b]">
             <form
                 ref={form}
                 onSubmit={sendEmail}
-                className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md border border-blue-200"
+                className="bg-[#111111] p-8 rounded-2xl shadow-2xl w-full max-w-md border-2 border-cyan-400/80 text-white hover:shadow-cyan-400/50 transition-all duration-500"
             >
-                <h2 className="text-2xl font-semibold text-center text-blue-700 mb-6">
+                <h2 className="text-3xl font-semibold text-center text-cyan-400 mb-6 drop-shadow-lg">
                     Join Us
                 </h2>
 
-                {/* Name */}
+                {/* Full Name */}
                 <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium mb-1">
                         Full Name
                     </label>
                     <input
@@ -85,53 +74,34 @@ const Joinus = () => {
                         onChange={handleChange}
                         placeholder="Enter your name"
                         required
-                        className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-400"
+                        className="w-full bg-[#1f1f1f] border border-cyan-400/50 rounded-lg px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-all"
                     />
                 </div>
 
                 {/* Gender */}
                 <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Gender
-                    </label>
+                    <label className="block text-sm font-medium mb-2">Gender</label>
                     <div className="flex gap-4">
-                        <label className="flex items-center gap-2">
-                            <input
-                                type="radio"
-                                name="gender"
-                                value="Male"
-                                checked={formData.gender === 'Male'}
-                                onChange={handleChange}
-                                required
-                            />
-                            Male
-                        </label>
-                        <label className="flex items-center gap-2">
-                            <input
-                                type="radio"
-                                name="gender"
-                                value="Female"
-                                checked={formData.gender === 'Female'}
-                                onChange={handleChange}
-                            />
-                            Female
-                        </label>
-                        <label className="flex items-center gap-2">
-                            <input
-                                type="radio"
-                                name="gender"
-                                value="Other"
-                                checked={formData.gender === 'Other'}
-                                onChange={handleChange}
-                            />
-                            Other
-                        </label>
+                        {['Male', 'Female', 'Other'].map((g) => (
+                            <label key={g} className="flex items-center gap-2">
+                                <input
+                                    type="radio"
+                                    name="gender"
+                                    value={g}
+                                    checked={formData.gender === g}
+                                    onChange={handleChange}
+                                    required
+                                    className="accent-cyan-400"
+                                />
+                                {g}
+                            </label>
+                        ))}
                     </div>
                 </div>
 
                 {/* Contact Number */}
                 <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium mb-1">
                         Contact Number
                     </label>
                     <input
@@ -142,21 +112,19 @@ const Joinus = () => {
                         placeholder="Enter your number"
                         required
                         pattern="[0-9]{10}"
-                        className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-400"
+                        className="w-full bg-[#1f1f1f] border border-cyan-400/50 rounded-lg px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-all"
                     />
                 </div>
 
                 {/* Level */}
                 <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Level
-                    </label>
+                    <label className="block text-sm font-medium mb-1">Level</label>
                     <select
                         name="level"
                         value={formData.level}
                         onChange={handleChange}
                         required
-                        className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-400"
+                        className="w-full bg-[#1f1f1f] border border-cyan-400/50 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-all"
                     >
                         <option value="">Select level</option>
                         <option value="Beginner">Beginner</option>
@@ -165,9 +133,9 @@ const Joinus = () => {
                     </select>
                 </div>
 
-                {/* Email (Optional) */}
+                {/* Email */}
                 <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium mb-1">
                         Email (Optional)
                     </label>
                     <input
@@ -176,15 +144,13 @@ const Joinus = () => {
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="Enter your email"
-                        className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-400"
+                        className="w-full bg-[#1f1f1f] border border-cyan-400/50 rounded-lg px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-all"
                     />
                 </div>
 
                 {/* Address */}
                 <div className="mb-6">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Address
-                    </label>
+                    <label className="block text-sm font-medium mb-1">Address</label>
                     <textarea
                         name="address"
                         value={formData.address}
@@ -192,20 +158,19 @@ const Joinus = () => {
                         placeholder="Enter your address"
                         required
                         rows="3"
-                        className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-400 resize-none"
+                        className="w-full bg-[#1f1f1f] border border-cyan-400/50 rounded-lg px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 resize-none transition-all"
                     ></textarea>
                 </div>
 
                 {/* Submit Button */}
                 <button
                     type="submit"
-                    className="w-full bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition-all duration-300"
+                    className="w-full bg-cyan-500 text-black font-semibold py-2 rounded-lg hover:bg-cyan-400 hover:scale-105 hover:shadow-cyan-400/50 transition-all duration-300"
                 >
                     Submit
                 </button>
             </form>
 
-            {/* Toast Container */}
             <ToastContainer />
         </div>
     )
