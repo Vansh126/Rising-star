@@ -24,7 +24,7 @@ const CdJoinus = () => {
         e.preventDefault();
 
         try {
-            // 1️⃣ Save to MongoDB
+
             const res = await fetch("https://rising-star-backend-2.onrender.com/api/users/join", {
                 method: "POST",
                 headers: {
