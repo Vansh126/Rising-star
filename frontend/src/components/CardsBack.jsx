@@ -34,7 +34,7 @@ const CardsBack = () => {
                 <div className="bg-gray-900/90 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-lg text-center w-72 hover:scale-105 hover:shadow-red-400/30 transition-all duration-300">
                     <div className="text-4xl mb-3">🏆</div>
                     <h3 className="text-lg font-semibold text-yellow-300 mb-2">To Achieve
-                        <span className="text-white font-bold"> 100%</span> Success Rate
+                         <span className="text-white font-bold"> 100%</span> Success Rate
                     </h3>
                     <p className="text-gray-400 text-sm">
                         Our players consistently perform and achieve success in every competition.
