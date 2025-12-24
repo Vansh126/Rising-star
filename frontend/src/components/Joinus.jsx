@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const CdJoinus = () => {
     const form = useRef();
+    const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
     const [formData, setFormData] = useState({
         name: "",
@@ -24,8 +25,7 @@ const CdJoinus = () => {
         e.preventDefault();
 
         try {
-
-            const res = await fetch("https://rising-star-backend-2.onrender.com/api/users/join", {
+            const res = await fetch(`${API_BASE}/api/users/join`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -39,23 +39,11 @@ const CdJoinus = () => {
                 throw new Error(data.message || "Failed to save data");
             }
 
-            // 2️⃣ Send Email
-            await emailjs.sendForm(
-                "service_mieivpm",
-                "template_qlrnmkm",
-                form.current,
-                {
-                    publicKey: "lC8eso79iVqLAwBIM",
-                }
-            );
-
-            // 3️⃣ Success
             toast.success("✅ Joined successfully!", {
                 position: "top-center",
                 autoClose: 3000,
             });
 
-            // 4️⃣ Reset form
             setFormData({
                 name: "",
                 gender: "",
@@ -64,6 +52,20 @@ const CdJoinus = () => {
                 email: "",
                 address: "",
             });
+
+            try {
+                await emailjs.sendForm(
+                    "service_mieivpm",
+                    "template_qlrnmkm",
+                    form.current,
+                    { publicKey: "lC8eso79iVqLAwBIM" }
+                );
+            } catch (err) {
+                toast.warn(`Email failed: ${err.message}`, {
+                    position: "top-center",
+                    autoClose: 3000,
+                });
+            }
         } catch (error) {
             toast.error(`❌ ${error.message}`, {
                 position: "top-center",
